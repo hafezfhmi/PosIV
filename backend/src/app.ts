@@ -2,6 +2,7 @@ import cookieParser from "cookie-parser";
 import express, { NextFunction, Request, Response } from "express";
 import createError, { HttpError } from "http-errors";
 import logger from "morgan";
+import { debug } from "./index";
 
 import indexRouter from "./routes/index";
 import usersRouter from "./routes/users";
@@ -24,17 +25,15 @@ app.use(function (_req: Request, _res: Response, next: NextFunction) {
 // error handler
 app.use(function (
   err: HttpError,
-  req: Request,
+  _req: Request,
   res: Response,
   _next: NextFunction,
 ) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "development" ? err : {};
+  debug(err);
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render("error");
+  return res.status(err.statusCode || 400).send({
+    errors: [{ message: err.message }],
+  });
 });
 
 export default app;
