@@ -82,3 +82,5 @@ function onListening() {
   }
   debug("Listening on " + bind);
 }
+
+export { debug };
