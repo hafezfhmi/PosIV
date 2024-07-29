@@ -1,13 +1,12 @@
-var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
+import cookieParser from "cookie-parser";
+import express, { NextFunction, Request, Response } from "express";
+import createError, { HttpError } from "http-errors";
+import logger from "morgan";
 
-var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
+import indexRouter from "./routes/index";
+import usersRouter from "./routes/users";
 
-var app = express();
+const app = express();
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -18,12 +17,17 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 
 // catch 404 and forward to error handler
-app.use(function (req, res, next) {
+app.use(function (_req: Request, _res: Response, next: NextFunction) {
   next(createError(404));
 });
 
 // error handler
-app.use(function (err, req, res, next) {
+app.use(function (
+  err: HttpError,
+  req: Request,
+  res: Response,
+  _next: NextFunction,
+) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
@@ -33,4 +37,4 @@ app.use(function (err, req, res, next) {
   res.render("error");
 });
 
-module.exports = app;
+export default app;
