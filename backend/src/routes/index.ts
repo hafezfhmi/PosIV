@@ -1,9 +1,9 @@
-import { NextFunction, Request, Response, Router } from "express";
+import { Request, Response, Router } from "express";
 
 const router = Router();
 
 /* GET home page. */
-router.get("/", function (_req: Request, res: Response, _next: NextFunction) {
+router.get("/", function (_req: Request, res: Response) {
   res.send("hello world");
 });
 
