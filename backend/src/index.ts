@@ -50,7 +50,7 @@ function normalizePort(val: string) {
 /**
  * Event listener for HTTP server "error" event.
  */
-function onError(error: any) {
+function onError(error: { code: string; syscall: string }) {
   if (error.syscall !== "listen") {
     throw error;
   }
@@ -62,9 +62,11 @@ function onError(error: any) {
     case "EACCES":
       console.error(bind + " requires elevated privileges");
       process.exit(1);
+      break;
     case "EADDRINUSE":
       console.error(bind + " is already in use");
       process.exit(1);
+      break;
     default:
       throw error;
   }
