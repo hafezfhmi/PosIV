@@ -6,7 +6,7 @@
     "build": "tsc",
     "start": "node ./dist/index.js",
     "dev": "nodemon ./src/index.ts",
-    "eslint": "eslint",
+    "lint": "eslint",
     "prettier": "prettier --check ."
   },
   "dependencies": {
