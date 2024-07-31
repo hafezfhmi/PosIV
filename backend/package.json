@@ -6,7 +6,8 @@
     "build": "tsc",
     "start": "node ./dist/index.js",
     "dev": "nodemon ./src/index.ts",
-    "eslint": "eslint"
+    "eslint": "eslint",
+    "prettier": "prettier --check ."
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -23,8 +24,10 @@
     "@types/morgan": "^1.9.9",
     "@types/node": "^22.0.0",
     "eslint": "^9.8.0",
+    "eslint-config-prettier": "^9.1.0",
     "globals": "^15.8.0",
     "nodemon": "^3.1.4",
+    "prettier": "3.3.3",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.4",
     "typescript-eslint": "^7.18.0"
